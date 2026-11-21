@@ -3,15 +3,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { setFlagsFromString } from 'node:v8';
-
-// Incremental marking off, set before solve.js loads so all of its work
-// runs under it.
-setFlagsFromString('--no-incremental-marking');
-
-const { run } = (await import('./solve.js')) as {
-  run: (input: unknown) => unknown;
-};
+import { run } from './solve.js';
 
 const INPUT_DIR = process.env.MAKEFUN_INPUT_DIR ?? '/input';
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
